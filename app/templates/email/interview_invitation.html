@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Interview Invitation</h2>
+
+<p>Dear {{ candidate_name }},</p>
+
+<p>Congratulations! We are pleased to invite you for an interview for the position of <strong>{{ job_title }}</strong>.</p>
+
+<h3>Interview Details:</h3>
+<ul>
+    <li><strong>Date:</strong> {{ interview_date }}</li>
+    <li><strong>Time:</strong> {{ interview_time }}</li>
+    <li><strong>Duration:</strong> {{ duration }} minutes</li>
+    <li><strong>Type:</strong> {{ interview_type }}</li>
+</ul>
+
+{% if zoom_link %}
+<div class="score">
+    <h3>Zoom Meeting Details:</h3>
+    <p><strong>Meeting ID:</strong> {{ meeting_id }}</p>
+    <p><strong>Passcode:</strong> {{ passcode }}</p>
+    <p>
+        <a href="{{ zoom_link }}" class="button">Join Zoom Meeting</a>
+    </p>
+</div>
+{% endif %}
+
+<h3>What to Expect:</h3>
+<ul>
+    <li>Technical discussion about your experience</li>
+    <li>Questions about the role and company</li>
+    <li>Opportunity to ask questions</li>
+</ul>
+
+<p>Please confirm your attendance by replying to this email.</p>
+
+<p>We look forward to speaking with you!</p>
+
+<p>Best regards,<br>{{ interviewer_name }}<br>{{ company_name }}</p>
+{% endblock %}
+        

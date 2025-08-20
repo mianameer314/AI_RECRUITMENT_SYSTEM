@@ -1,0 +1,82 @@
+services:
+  api:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    restart: always
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  celery:
+    build: .
+    command: celery -A app.workers.celery_worker.celery_app worker --loglevel=info --pool=solo 
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - mongo
+    env_file:
+      - .env
+    restart: always
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
+  celery-beat:
+    build: .
+    command: celery -A app.workers.celery_worker.celery_app beat --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - mongo
+    env_file:
+      - .env
+    restart: always
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+
+  # New service for running tests
+  test:
+    build: .
+    command: pytest --verbose tests/
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+      - redis
+    # The 'test' service does not need to restart automatically, as it's a one-off command.
+    # restart: on-failure # You could use this if tests might fail and you want to retry
+
+volumes:
+  mongodb_data:
+
+
+

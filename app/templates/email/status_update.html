@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Application Status Update</h2>
+
+<p>Dear {{ candidate_name }},</p>
+
+<p>We wanted to update you on the status of your application for the position of <strong>{{ job_title }}</strong>.</p>
+
+<div class="score">
+    <h3>Status: {{ status }}</h3>
+    <p>{{ status_message }}</p>
+</div>
+
+{% if next_steps %}
+<h3>Next Steps:</h3>
+<ul>
+    {% for step in next_steps %}
+    <li>{{ step }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if feedback %}
+<h3>Feedback:</h3>
+<p>{{ feedback }}</p>
+{% endif %}
+
+<p>Thank you for your interest in joining our team.</p>
+
+<p>Best regards,<br>{{ recruiter_name }}<br>{{ company_name }}</p>
+{% endblock %}
+        

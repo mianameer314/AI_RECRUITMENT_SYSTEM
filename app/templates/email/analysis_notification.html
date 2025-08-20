@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Resume Analysis Complete</h2>
+
+<p>Hello {{ recipient_name }},</p>
+
+<p>The AI analysis for resume <strong>{{ resume_id }}</strong> has been completed.</p>
+
+<div class="score {{ score_class }}">
+    <h3>Overall Score: {{ overall_score }}/100</h3>
+    <p><strong>Summary:</strong> {{ summary }}</p>
+    <p><strong>Analyzed By:</strong> {{ provider|capitalize }}</p>  {# ✅ Add this line #}
+</div>
+
+<h3>Key Highlights:</h3>
+<ul>
+    {% for strength in strengths %}
+    <li>{{ strength }}</li>
+    {% endfor %}
+</ul>
+
+{% if job_match_score %}
+<div class="score">
+    <h3>Job Match Score: {{ job_match_score }}/100</h3>
+    <p>{{ fit_assessment }}</p>
+</div>
+{% endif %}
+
+<p>Best regards,<br>AI Recruitment Team</p>
+{% endblock %}

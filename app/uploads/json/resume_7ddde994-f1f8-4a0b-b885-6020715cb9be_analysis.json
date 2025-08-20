@@ -1,0 +1,96 @@
+{
+    "overall_score": 75,
+    "skills": {
+        "technical_skills": [
+            "Python",
+            "Java",
+            "C++",
+            "SQL",
+            "HTML",
+            "CSS",
+            "Pandas",
+            "NumPy",
+            "Scikit-learn",
+            "TensorFlow",
+            "PyTorch",
+            "MongoDB",
+            "Git",
+            "GitHub",
+            "GitHub Copilot",
+            "Jupyter Notebook",
+            "AI",
+            "Machine Learning",
+            "Deep Learning",
+            "Data Visualization",
+            "EDA",
+            "Prompt Engineering",
+            "Project Management",
+            "Neural Networks",
+            "SVM",
+            "KNN",
+            "StandardScaler",
+            "LabelEncoder",
+            "Multilayer Perceptrons",
+            "Feedforward Neural Networks"
+        ],
+        "soft_skills": [
+            "Team Collaboration",
+            "Problem Solving",
+            "Adaptability",
+            "Time Management",
+            "Creative Thinking"
+        ],
+        "skill_score": 85
+    },
+    "experience": {
+        "years_of_experience": 0,
+        "relevant_experience": [
+            "Bank Customer Churn Prediction project (using ML models, data preprocessing, achieving 83.11% accuracy)",
+            "NumPy Vector Transformation project"
+        ],
+        "experience_score": 60
+    },
+    "education": {
+        "degrees": [
+            "Bachelor of Science in Computer Science"
+        ],
+        "certifications": [
+            "Anaconda Python for Data Science Professional Certificate",
+            "Introduction to Data Science",
+            "Introduction to Career Skills in Data Analytics",
+            "2025 Master Class on Data Science using Python A-Z for ML",
+            "Microsoft Azure Machine Learning Fundamentals",
+            "Prompt Engineering with ChatGPT",
+            "Software Testing Assistance with GitHub Copilot AI",
+            "Microsoft SQL Server Bootcamp 2025: Go from Zero to Hero",
+            "NLP with Python for Machine Learning Essential Training",
+            "Tools for Data Science"
+        ],
+        "education_score": 70
+    },
+    "strengths": [
+        "Strong foundation in programming and data science tools.",
+        "Multiple relevant certifications demonstrating commitment to learning.",
+        "Experience with various ML models and techniques.",
+        "Active involvement in AI/ML society.",
+        "Good communication and soft skills."
+    ],
+    "weaknesses": [
+        "Lack of professional work experience.",
+        "Projects are relatively simple and lack significant complexity or originality.",
+        "Resume formatting could be improved (e.g., consistent capitalization, removing unnecessary line breaks).",
+        "The claimed 83.11% accuracy needs further context (e.g., cross-validation, test-train split).",
+        "Future graduation date makes it difficult to assess readiness for a full-time role."
+    ],
+    "recommendations": [
+        "Gain professional experience through internships or freelance projects.",
+        "Focus on developing more complex and challenging projects to showcase advanced skills.",
+        "Quantify achievements in projects whenever possible (e.g., improved efficiency, cost savings).",
+        "Improve resume formatting for better readability and impact.",
+        "Clearly articulate the value proposition for each project and highlight unique contributions.",
+        "Obtain more substantial projects before graduation, focusing on areas that align with career goals."
+    ],
+    "summary": "Mian Ameer Muhammad is a recent computer science graduate with a strong interest in data science and machine learning.  He possesses a solid foundation in relevant technologies and has completed several online certifications.  However, he lacks professional work experience, and his projects, while demonstrating foundational skills, need to be expanded upon to showcase a higher level of competency.",
+    "provider": "gemini",
+    "raw_response": "```json\n{\n  \"overall_score\": 75,\n  \"skills\": {\n    \"technical_skills\": [\"Python\", \"Java\", \"C++\", \"SQL\", \"HTML\", \"CSS\", \"Pandas\", \"NumPy\", \"Scikit-learn\", \"TensorFlow\", \"PyTorch\", \"MongoDB\", \"Git\", \"GitHub\", \"GitHub Copilot\", \"Jupyter Notebook\", \"AI\", \"Machine Learning\", \"Deep Learning\", \"Data Visualization\", \"EDA\", \"Prompt Engineering\", \"Project Management\", \"Neural Networks\", \"SVM\", \"KNN\", \"StandardScaler\", \"LabelEncoder\", \"Multilayer Perceptrons\", \"Feedforward Neural Networks\"],\n    \"soft_skills\": [\"Team Collaboration\", \"Problem Solving\", \"Adaptability\", \"Time Management\", \"Creative Thinking\"],\n    \"skill_score\": 85\n  },\n  \"experience\": {\n    \"years_of_experience\": 0,\n    \"relevant_experience\": [\"Bank Customer Churn Prediction project (using ML models, data preprocessing, achieving 83.11% accuracy)\", \"NumPy Vector Transformation project\"],\n    \"experience_score\": 60\n  },\n  \"education\": {\n    \"degrees\": [\"Bachelor of Science in Computer Science\"],\n    \"certifications\": [\"Anaconda Python for Data Science Professional Certificate\", \"Introduction to Data Science\", \"Introduction to Career Skills in Data Analytics\", \"2025 Master Class on Data Science using Python A-Z for ML\", \"Microsoft Azure Machine Learning Fundamentals\", \"Prompt Engineering with ChatGPT\", \"Software Testing Assistance with GitHub Copilot AI\", \"Microsoft SQL Server Bootcamp 2025: Go from Zero to Hero\", \"NLP with Python for Machine Learning Essential Training\", \"Tools for Data Science\"],\n    \"education_score\": 70\n  },\n  \"strengths\": [\n    \"Strong foundation in programming and data science tools.\",\n    \"Multiple relevant certifications demonstrating commitment to learning.\",\n    \"Experience with various ML models and techniques.\",\n    \"Active involvement in AI/ML society.\",\n    \"Good communication and soft skills.\"\n  ],\n  \"weaknesses\": [\n    \"Lack of professional work experience.\",\n    \"Projects are relatively simple and lack significant complexity or originality.\",\n    \"Resume formatting could be improved (e.g., consistent capitalization, removing unnecessary line breaks).\",\n    \"The claimed 83.11% accuracy needs further context (e.g., cross-validation, test-train split).\",\n    \"Future graduation date makes it difficult to assess readiness for a full-time role.\"\n  ],\n  \"recommendations\": [\n    \"Gain professional experience through internships or freelance projects.\",\n    \"Focus on developing more complex and challenging projects to showcase advanced skills.\",\n    \"Quantify achievements in projects whenever possible (e.g., improved efficiency, cost savings).\",\n    \"Improve resume formatting for better readability and impact.\",\n    \"Clearly articulate the value proposition for each project and highlight unique contributions.\",\n    \"Obtain more substantial projects before graduation, focusing on areas that align with career goals.\"\n  ],\n  \"summary\": \"Mian Ameer Muhammad is a recent computer science graduate with a strong interest in data science and machine learning.  He possesses a solid foundation in relevant technologies and has completed several online certifications.  However, he lacks professional work experience, and his projects, while demonstrating foundational skills, need to be expanded upon to showcase a higher level of competency.\"\n}\n```\n"
+}
