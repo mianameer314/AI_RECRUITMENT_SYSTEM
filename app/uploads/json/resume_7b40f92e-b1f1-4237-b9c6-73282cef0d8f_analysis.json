@@ -1,0 +1,66 @@
+{
+    "overall_score": 65,
+    "skills": {
+        "technical_skills": [
+            "Machine Learning",
+            "Python",
+            "Java",
+            "SQL",
+            "Software Project Development",
+            "Data handling and visualization",
+            "AWS Machine Learning Operations"
+        ],
+        "soft_skills": [
+            "Problem-solving",
+            "Commitment to learning",
+            "Passion for innovative technology solutions"
+        ],
+        "skill_score": 75
+    },
+    "experience": {
+        "years_of_experience": 0,
+        "relevant_experience": [
+            "Private Home Tutor (limited relevance)",
+            "Project Analyst (needs more detail to assess relevance)"
+        ],
+        "experience_score": 30
+    },
+    "education": {
+        "degrees": [
+            "BS in Artificial Intelligence"
+        ],
+        "certifications": [
+            "Advanced MS Excel (Data handling and visualization)",
+            "Generative AI LinkedIn Learning",
+            "AWS Machine Learning Operations LinkedIn Learning",
+            "SQL For Data Analysis LinkedIn Learning"
+        ],
+        "education_score": 80
+    },
+    "strengths": [
+        "Pursuing a degree in Artificial Intelligence",
+        "Multiple personal projects showcased on GitHub",
+        "Relevant certifications (especially AWS Machine Learning Operations)",
+        "Solid foundation in programming languages (Python, Java, SQL)",
+        "Clearly stated career goal"
+    ],
+    "weaknesses": [
+        "Limited work experience, especially in AI/ML",
+        "Vague description of 'Project Analyst' role",
+        "Resume lacks quantifiable achievements in projects",
+        "LinkedIn profile URL is incorrectly formatted",
+        "Resume could be more concise and visually appealing"
+    ],
+    "recommendations": [
+        "Expand on the 'Project Analyst' role with quantifiable achievements and details of responsibilities.",
+        "Quantify accomplishments in personal projects (e.g., 'Improved efficiency by 15%').",
+        "Correct the LinkedIn profile URL.",
+        "Consider adding a portfolio section with more detailed project descriptions and possibly deployed demos.",
+        "Tailor the resume to each specific job application, highlighting the most relevant skills and experiences.",
+        "Seek relevant internships to gain practical experience.",
+        "Improve the visual presentation of the resume (e.g., use bullet points consistently, add some whitespace)."
+    ],
+    "summary": "Areej Suleman is an aspiring AI professional with a strong academic foundation and several personal projects. However, she lacks significant professional experience.  Her resume demonstrates potential, but needs significant improvement to highlight accomplishments and better showcase her skills to potential employers.  Gaining relevant internship experience is crucial to enhance her competitiveness.",
+    "provider": "gemini",
+    "raw_response": "```json\n{\n  \"overall_score\": 65,\n  \"skills\": {\n    \"technical_skills\": [\"Machine Learning\", \"Python\", \"Java\", \"SQL\", \"Software Project Development\", \"Data handling and visualization\", \"AWS Machine Learning Operations\"],\n    \"soft_skills\": [\"Problem-solving\", \"Commitment to learning\", \"Passion for innovative technology solutions\"],\n    \"skill_score\": 75\n  },\n  \"experience\": {\n    \"years_of_experience\": 0,\n    \"relevant_experience\": [\"Private Home Tutor (limited relevance)\", \"Project Analyst (needs more detail to assess relevance)\"],\n    \"experience_score\": 30\n  },\n  \"education\": {\n    \"degrees\": [\"BS in Artificial Intelligence\"],\n    \"certifications\": [\"Advanced MS Excel (Data handling and visualization)\", \"Generative AI LinkedIn Learning\", \"AWS Machine Learning Operations LinkedIn Learning\", \"SQL For Data Analysis LinkedIn Learning\"],\n    \"education_score\": 80\n  },\n  \"strengths\": [\n    \"Pursuing a degree in Artificial Intelligence\",\n    \"Multiple personal projects showcased on GitHub\",\n    \"Relevant certifications (especially AWS Machine Learning Operations)\",\n    \"Solid foundation in programming languages (Python, Java, SQL)\",\n    \"Clearly stated career goal\"\n  ],\n  \"weaknesses\": [\n    \"Limited work experience, especially in AI/ML\",\n    \"Vague description of 'Project Analyst' role\",\n    \"Resume lacks quantifiable achievements in projects\",\n    \"LinkedIn profile URL is incorrectly formatted\",\n    \"Resume could be more concise and visually appealing\"  \n  ],\n  \"recommendations\": [\n    \"Expand on the 'Project Analyst' role with quantifiable achievements and details of responsibilities.\",\n    \"Quantify accomplishments in personal projects (e.g., 'Improved efficiency by 15%').\",\n    \"Correct the LinkedIn profile URL.\",\n    \"Consider adding a portfolio section with more detailed project descriptions and possibly deployed demos.\",\n    \"Tailor the resume to each specific job application, highlighting the most relevant skills and experiences.\",\n    \"Seek relevant internships to gain practical experience.\",\n    \"Improve the visual presentation of the resume (e.g., use bullet points consistently, add some whitespace).\"\n  ],\n  \"summary\": \"Areej Suleman is an aspiring AI professional with a strong academic foundation and several personal projects. However, she lacks significant professional experience.  Her resume demonstrates potential, but needs significant improvement to highlight accomplishments and better showcase her skills to potential employers.  Gaining relevant internship experience is crucial to enhance her competitiveness.\"\n}\n```\n"
+}

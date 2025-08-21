@@ -17,7 +17,8 @@ services:
       - 1.1.1.1
 
   mongo:
-    image: mongo
+    image: mongo:6.0
+    platform: linux/amd64   # <-- or linux/arm64/v8 if you're on ARM
     restart: always
     ports:
       - "27017:27017"
@@ -25,11 +26,13 @@ services:
       - mongodb_data:/data/db
 
   redis:
-    image: redis:latest
+    image: redis:7.2
+    platform: linux/amd64   # <-- or linux/arm64/v8
     container_name: redis
     ports:
       - "6379:6379"
     restart: always
+
 
   celery:
     build: .

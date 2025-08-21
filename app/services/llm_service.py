@@ -11,7 +11,7 @@ from typing import Dict, Any, Optional
 from app.core.config import settings
 from app.services.email_service import EmailService
 from app.workers.celery_worker import celery_app
-from app.db.mongo import db # Assuming db is the AsyncIOMotorClient instance
+from app.db.sync_mongo import db_sync as db 
 
 class LLMService:
     """Service for integrating with various LLM providers"""
@@ -287,115 +287,71 @@ class LLMService:
 # The Celery task now handles the email notification
 @celery_app.task
 def analyze_resume_task(resume_id: str, admin_user_id: str, job_description: str = "", provider: str = "gemini"):
-    """
-    Celery task for analyzing resume with LLM and sending a notification.
-    
-    Args:
-        resume_id: The ID of the resume to analyze
-        admin_user_id: The admin user ID who triggered the analysis (for logging/audit)
-        job_description: Optional job description for matching
-        provider: LLM provider to use (gemini, openai, mock)
-    """
-    
-    async def _analyze_and_notify_async():
-        """Helper async function to perform all async operations."""
-        llm_service = LLMService(provider=provider)
-        
-        json_path = f"app/uploads/json/{resume_id}.json"
-        if not os.path.exists(json_path):
-            print(f"Resume JSON not found: {json_path}")
-            return {"error": "Resume text not found"}
-        
-        with open(json_path, 'r') as f:
-            resume_data = json.load(f)
+    # Load resume text from JSON
+    json_path = f"app/uploads/json/{resume_id}.json"
+    if not os.path.exists(json_path):
+        print(f"❌ Resume JSON not found: {json_path}")
+        return {"error": "Resume text not found"}
 
-        resume_text = resume_data.get("text", "")
+    with open(json_path, 'r') as f:
+        resume_data = json.load(f)
 
-        analysis = llm_service.analyze_resume(resume_text, job_description)
+    resume_text = resume_data.get("text", "")
+    llm_service = LLMService(provider=provider)
+    analysis = llm_service.analyze_resume(resume_text, job_description)
 
-        analysis_path = f"app/uploads/json/{resume_id}_analysis.json"
-        with open(analysis_path, 'w') as f:
-            json.dump(analysis, f, indent=4)
+    # Save analysis to JSON
+    analysis_path = f"app/uploads/json/{resume_id}_analysis.json"
+    with open(analysis_path, 'w') as f:
+        json.dump(analysis, f, indent=4)
 
-        # Await the async db call
-        resume_meta = await db.resumes.find_one({"resume_id": resume_id})
-        
-        print(f"DEBUG: Found resume_meta: {resume_meta}")
-        if resume_meta:
-            candidate_user_id = resume_meta.get("user_id")
-            print(f"DEBUG: Retrieved candidate_user_id: {candidate_user_id}")
-            if candidate_user_id:
-                try:
-                    user_object_id = None
-                    # Convert to ObjectId only if it's a string and a valid ObjectId string
-                    # Or if it's already an ObjectId instance
-                    if isinstance(candidate_user_id, ObjectId):
-                        user_object_id = candidate_user_id
-                    elif isinstance(candidate_user_id, str) and ObjectId.is_valid(candidate_user_id):
-                        user_object_id = ObjectId(candidate_user_id)
-                    
-                    if user_object_id:
-                        user_meta = await db.users.find_one({"_id": user_object_id})
-                    else:
-                        print(f"Invalid or non-convertible candidate_user_id format: {candidate_user_id}")
-                        user_meta = None # Ensure user_meta is None if ID is invalid
-                except Exception as e:
-                    print(f"Error retrieving user_meta: {e}")
-                    user_meta = None
-            else:
-                print(f"No user_id found in resume metadata for resume_id: {resume_id}")
-                user_meta = None
-            
-            if user_meta:
-                recipient_email = user_meta.get("email")
-                if not recipient_email:
-                    print("No email found for user, skipping email send.")
-                    return {"status": "success", "analysis": analysis}
+    # Retrieve resume metadata and candidate email using synchronous PyMongo
+    resume_meta = db.resumes.find_one({"resume_id": resume_id})
+    if not resume_meta:
+        print(f"❌ Resume metadata not found for resume_id: {resume_id}")
+        return {"error": "Resume metadata not found"}
 
-                overall_score = analysis.get("overall_score", 0)
-                if overall_score >= 80:
-                    score_class = "high"
-                elif overall_score >= 60:
-                    score_class = "medium"
-                else:
-                    score_class = "low"
-                
-                template_data = {
-                    "recipient_name": user_meta.get("name", "Candidate"),
-                    "resume_id": resume_id,
-                    "overall_score": overall_score,
-                    "score_class": score_class,
-                    "summary": analysis.get("summary", "Analysis completed"),
-                    "strengths": analysis.get("strengths", []),
-                    "job_match_score": analysis.get("job_match_score"),
-                    "missing_skills": analysis.get("missing_skills", []),
-                    "fit_assessment": analysis.get("fit_assessment", ""),
-                    "provider": analysis.get("provider", "unknown"),
-                    "dashboard_url": "http://localhost:8000/dashboard"
-                }
-                
-                email_send_result = celery_app.send_task(
-                    'app.services.email_service.send_email_task', # Fully qualified task name
-                    args=[
-                        [recipient_email],
-                        f"Resume Analysis Complete - {resume_id}",
-                        "analysis_notification.html",
-                        template_data
-                    ]
-                )
-                print(f"✅ Email notification task enqueued: {email_send_result.id} for {recipient_email} for resume {resume_id}")
-            else:
-                print(f"❌ User not found for candidate_user_id: {candidate_user_id}")
-        else:
-            print(f"❌ Resume metadata not found for resume_id: {resume_id}")
+    candidate_user_id = resume_meta.get("user_id")
+    user_meta = None
+    if candidate_user_id:
+        try:
+            obj_id = ObjectId(candidate_user_id) if isinstance(candidate_user_id, str) else candidate_user_id
+            user_meta = db.users.find_one({"_id": obj_id})
+        except Exception as e:
+            print(f"Error retrieving user_meta: {e}")
+            user_meta = None
 
-        return {"status": "success", "analysis": analysis}
+    # Send email if user exists
+    if user_meta:
+        recipient_email = user_meta.get("email")
+        if recipient_email:
+            overall_score = analysis.get("overall_score", 0)
+            score_class = "high" if overall_score >= 80 else "medium" if overall_score >= 60 else "low"
 
-    try:
-        return asyncio.run(_analyze_and_notify_async())
-    except Exception as e:
-        print(f"Error in analyze_resume_task: {e}")
-        return {"error": str(e)}
+            template_data = {
+                "recipient_name": user_meta.get("name", "Candidate"),
+                "resume_id": resume_id,
+                "overall_score": overall_score,
+                "score_class": score_class,
+                "summary": analysis.get("summary", "Analysis completed"),
+                "strengths": analysis.get("strengths", []),
+                "job_match_score": analysis.get("job_match_score"),
+                "missing_skills": analysis.get("missing_skills", []),
+                "fit_assessment": analysis.get("fit_assessment", ""),
+                "provider": analysis.get("provider", "unknown"),
+                "dashboard_url": "http://localhost:8000/dashboard"
+            }
+
+            email_task = celery_app.send_task(
+                'app.services.email_service.send_email_task',
+                args=[[recipient_email],
+                      f"Resume Analysis Complete - {resume_id}",
+                      "analysis_notification.html",
+                      template_data]
+            )
+            print(f"✅ Email notification task enqueued: {email_task.id} for {recipient_email}")
+
+    return {"status": "success", "analysis": analysis}
 
 
 def trigger_resume_analysis(resume_id: str, job_description: str, provider: str, admin_user_id: str):
