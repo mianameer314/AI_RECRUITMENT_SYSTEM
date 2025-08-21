@@ -74,7 +74,9 @@ The enhanced AI Recruitment System is built with a microservices-inspired archit
 │                 │    │                 │    │                 │
 │ • User Data     │    │ • Resume PDFs   │    │ • Google Gemini │
 │ • Job Postings  │    │ • JSON Results  │    │ • Zoom API      │
-│ • Applications  │    │ • Email Templates│    │ • SMTP Servers  │
+│ • Applications  │    │ • Email Templates│    │ • SMTP Servers
+ │                                              . OpenAI
+                                                 . Google Calender
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
